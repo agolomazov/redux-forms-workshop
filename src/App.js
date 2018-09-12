@@ -3,7 +3,8 @@ import RegisterForm from './components/RegisterForm';
 
 class App extends Component {
 	submit = values => {
-		console.log('form data', values);
+		const coupones = values.discountCodes.filter(value => value !== undefined);
+		console.log('discounts', coupones);
 	};
 
 	getInitialValues = () => {
