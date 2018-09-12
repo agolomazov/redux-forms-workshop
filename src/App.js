@@ -8,7 +8,6 @@ class App extends Component {
 
 	getInitialValues = () => {
 		return {
-			name: 'Anton Golomazov',
 			preference: 'tabs',
 			newsletter: true,
 		};

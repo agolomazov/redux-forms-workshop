@@ -1,21 +1,19 @@
-export const validate = values => {
-	const errors = {};
+export const required = value => (value ? undefined : 'Value is required');
 
-	if (!values.firstname) {
-		errors.firstname = 'First Name is required';
+export const minLength = value => (value.length < 4 ? 'Value must be at leasr 4 characters' : undefined);
+
+export const maxLength = value => (value.length > 10 ? 'Value is too long' : undefined);
+
+export const matchesPassword = (value, values) => (value === values.password ? undefined : 'Passwords is not matches');
+
+export const asyncValidate = async values => {
+	const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
+
+	await sleep(1000);
+	if (['kent', 'addy', 'john'].includes(values.username)) {
+		console.log('I am here!');
+		return Promise.reject({
+			username: 'Username already taken',
+		});
 	}
-
-	if (!values.surname) {
-		errors.surname = 'Surname is required';
-	}
-
-	if (!values.username) {
-		errors.username = 'Username is required';
-	} else if (values.username.length < 4) {
-		errors.username = 'Username must be at least 4 characters long';
-	} else if (values.username.length > 10) {
-		errors.username = 'Username is too long';
-	}
-
-	return errors;
 };
